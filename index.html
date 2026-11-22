@@ -117,6 +117,8 @@
       .anchor .prefix { font-size: 0.875rem; font-weight: 600; color: var(--apricot-deep); }
       .anchor .main { font-family: "Fraunces", Georgia, serif; margin-top: 0.25rem; font-weight: 500; line-height: 1.25; color: var(--ink); font-size: 1.875rem; overflow-wrap: break-word; }
       .anchor.in-questions .main { font-size: 2.25rem; }
+      .anchor .main.small { font-size: 1.5rem; }
+      .anchor.in-questions .main.small { font-size: 1.75rem; }
       .anchor .main.apricot { color: var(--apricot-deep); }
       .anchor .meta { margin-top: 0.75rem; font-size: 0.875rem; line-height: 1.25; color: var(--ink-soft); }
       .anchor .meta .num { font-weight: 600; color: var(--apricot-deep); }
@@ -237,9 +239,9 @@
     /* ── Data ─────────────────────────────────────────────────────── */
 
     var WANTINGS = [
-      { id: "approval", name: "Approval", nameZh: "想要认可", line: "I want them to like me, accept me, forgive me.", lineZh: "我想让他们喜欢我、接受我、原谅我。" },
-      { id: "control",  name: "Control",  nameZh: "想要控制", line: "I want it to go my way.", lineZh: "我想让事情按我的方式来。" },
-      { id: "security", name: "Security", nameZh: "想要安全", line: "I want to feel safe. I want to be sure.", lineZh: "我想感到安全。我想有把握。" }
+      { id: "approval", name: "Approval", nameZh: "想要认可", line: "I want them to like me, accept me, forgive me.", lineZh: "想被喜欢，想被接纳，想被原谅。" },
+      { id: "control",  name: "Control",  nameZh: "想要控制", line: "I want it to go my way.", lineZh: "想让事情照我的意思来。" },
+      { id: "security", name: "Security", nameZh: "想要安全", line: "I want to feel safe. I want to be sure.", lineZh: "想要安全感，想要心里有底。" }
     ];
     function wantingShort(w) { return LANG === "zh" ? w.nameZh : w.name; }
     function wantingFull(w) { return LANG === "zh" ? w.nameZh : ("Wanting " + w.name); }
@@ -248,22 +250,22 @@
     var EMOTION_GROUPS = [
       { name: "Apathy", nameZh: "万念俱灰",
         words: ["Bored","Can't win","Cold","Dead","Defeated","Depressed","Discouraged","Drained","Hopeless","I can't","Indifferent","Lost","Numb","Overwhelmed","Resigned","Stuck","Too tired","Useless","What's the use?","Worthless"],
-        wordsZh: ["无聊","赢不了","冷漠","麻木","被打败","沮丧","灰心","精疲力尽","绝望","我做不到","无所谓","迷失","木然","不堪重负","认命","卡住了","太累了","没用","有什么用呢","毫无价值"] },
-      { name: "Grief", nameZh: "悲伤",
+        wordsZh: ["无聊","赢不了","冷漠","心如死灰","被击败","沮丧","泄气","精疲力竭","绝望","我不行","漠不关心","迷失","麻木","不堪重负","逆来顺受","卡住了","太累了","没用","有什么用","毫无价值"] },
+      { name: "Grief", nameZh: "悲苦",
         words: ["Abandoned","Ashamed","Betrayed","Disappointed","Guilty","Heartbroken","Hurt","It's not fair","Longing","Loss","Nobody cares","Poor me","Regret","Rejected","Sadness","Unloved","Unwanted","Wounded"],
-        wordsZh: ["被抛弃","羞愧","被背叛","失望","内疚","心碎","受伤","不公平","渴望","失落","没人在乎","我好可怜","后悔","被拒绝","悲伤","不被爱","不被需要","心里有伤"] },
+        wordsZh: ["被遗弃","羞耻","被背叛","失望","内疚","心碎","受伤","这不公平","思念","失落","没人在乎我","我真可怜","后悔","被拒绝","悲伤","不被爱","没人要","心里有伤"] },
       { name: "Fear", nameZh: "恐惧",
         words: ["Anxious","Cautious","Dread","Insecure","Nervous","Panic","Paranoid","Scared","Shy","Suspicious","Tense","Trapped","Uncertain","Vulnerable","Worry"],
-        wordsZh: ["焦虑","小心翼翼","惧怕","不安","紧张","恐慌","多疑","害怕","害羞","怀疑","紧绷","被困住","不确定","脆弱","担心"] },
-      { name: "Lust", nameZh: "欲望",
+        wordsZh: ["焦虑","小心谨慎","惧怕","没有安全感","紧张","恐慌","偏执","害怕","害羞","猜忌","紧绷","被困住","不确定","脆弱","担忧"] },
+      { name: "Lust", nameZh: "贪求",
         words: ["Can't wait","Compulsive","Craving","Demanding","Driven","Envy","Greedy","Impatient","Must have it","Never enough","Obsessed","Possessive","Pushy","Selfish"],
-        wordsZh: ["等不及","停不下来","渴求","索求","被驱使","嫉妒","贪心","不耐烦","必须得到","永远不够","执迷","占有欲强","咄咄逼人","自私"] },
+        wordsZh: ["迫不及待","强迫性","渴求","苛刻","被欲望驱使","嫉妒","贪婪","不耐烦","必须得到","永远不够","迷恋","占有欲强","咄咄逼人","自私"] },
       { name: "Anger", nameZh: "愤怒",
         words: ["Aggressive","Annoyed","Argumentative","Disgust","Frustrated","Furious","Hatred","Hostile","Irritated","Jealous","Outraged","Resentful","Spiteful","Stubborn"],
-        wordsZh: ["攻击性强","恼火","爱争辩","厌恶","挫败","暴怒","仇恨","敌意","烦躁","妒忌","愤慨","怨恨","记恨","固执"] },
-      { name: "Pride", nameZh: "骄傲",
+        wordsZh: ["攻击性强","恼火","爱争辩","厌恶","懊恼","暴怒","仇恨","敌意","烦躁","妒火中烧","愤慨","怨恨","记恨","固执"] },
+      { name: "Pride", nameZh: "自尊自傲",
         words: ["Arrogant","Boastful","Complacent","Contempt","Critical","Gloating","Judgmental","Never wrong","Rigid","Smug","Snobbish","Unforgiving","Vain"],
-        wordsZh: ["傲慢","自夸","自满","轻蔑","挑剔","幸灾乐祸","爱评判","永远没错","僵硬","自鸣得意","势利","不宽恕","虚荣"] }
+        wordsZh: ["傲慢","自夸","自满","鄙视","挑剔","幸灾乐祸","爱评判","永远没错","死板","自鸣得意","势利","不肯原谅","虚荣"] }
     ];
     function groupName(g) { return LANG === "zh" ? g.nameZh : g.name; }
     function groupWords(g) { return LANG === "zh" ? g.wordsZh : g.words; }
@@ -336,6 +338,7 @@
           after: num(p.after, 5),
           layers: Math.max(1, Math.floor(num(p.layers, 1))),
           hasBefore: p.hasBefore === true,
+          hasAfter: p.hasAfter === true,
           finished: p.finished === true
         };
       } catch (e) { return null; }
@@ -360,6 +363,7 @@
       after: restored ? restored.after : 5,
       layers: restored ? restored.layers : 1,
       hasBefore: restored ? restored.hasBefore : false,
+      hasAfter: restored ? restored.hasAfter : false,
       finished: restored ? restored.finished : false,
       saved: restored ? restored.finished : false, // a restored end screen was already saved
       avatarOpen: false
@@ -373,7 +377,7 @@
           forkChoice: S.forkChoice, shortcutEnding: S.shortcutEnding,
           recordTopic: S.recordTopic, before: S.before, wanting: S.wanting,
           after: S.after, layers: S.layers, hasBefore: S.hasBefore,
-          finished: S.finished
+          hasAfter: S.hasAfter, finished: S.finished
         }));
       } catch (e) { /* app still works; a reload just falls back home */ }
     }
@@ -417,7 +421,7 @@
         '</div>' +
         '<input type="range" min="0" max="10" step="1" value="' + value + '" aria-label="' + esc(label) + '" class="dawn-range" id="intensity-slider" style="--fill:' + (value * 10) + '%">' +
         '<div style="margin-top:0.75rem;display:flex;justify-content:space-between;font-size:0.875rem;color:var(--ink-soft)">' +
-          '<span>' + L("0 — nothing", "0 — 什么都没有") + '</span><span>' + L("10 — the heaviest", "10 — 最重") + '</span>' +
+          '<span>' + L("0 — nothing", "0 — 一点都没有") + '</span><span>' + L("10 — the heaviest", "10 — 最重") + '</span>' +
         '</div></div>';
     }
 
@@ -430,7 +434,7 @@
 
     function footerHTML() {
       var h = '<footer>' +
-        '<p class="fine">' + L("Inspired by Lester Levenson&rsquo;s release technique. A self-reflection tool, not therapy.", "灵感来自莱斯特·莱文森的释放技术。这是一个自我观照工具，不是心理治疗。") + '</p>' +
+        '<p class="fine">' + L("Inspired by Lester Levenson&rsquo;s release technique. A self-reflection tool, not therapy.", "源自莱斯特·利文森的圣多纳释放法。<br>用来观照自己，不是心理治疗。") + '</p>' +
         '<div class="fine" style="margin-top:0.75rem">' +
           '<p>Designed by Kim Chen,</p>' +
           '<p>Built by her cheer leader muse with pink pompom</p>' +
@@ -467,10 +471,12 @@
     }
 
     // Goal anchor: the light follows the current wanting intensity — the
-    // live re-rate on the "after" screen, the last re-rate once a new
-    // layer has begun, otherwise the starting rating.
+    // live re-rate on the "after" screen, and the last re-rate everywhere
+    // after it (release questions, new layers), otherwise the starting
+    // rating. Once the user has re-rated, the starting rating must never
+    // light the cards again.
     function goalCurrentIntensity() {
-      return (S.step === "after" || S.step === "layerChoice" || S.layers > 1) ? S.after : S.before;
+      return (S.step === "after" || S.step === "layerChoice" || S.hasAfter || S.layers > 1) ? S.after : S.before;
     }
     function mixPct(base, extra) { return "color-mix(in srgb, var(--apricot) " + Math.round(base + extra) + "%, transparent)"; }
 
@@ -502,17 +508,17 @@
         }
         var wantingLabel = L("Wanting", "想要");
         var havingLabel = L("Having", "拥有");
-        h += '<section class="' + cls + '" aria-label="' + esc(L("You are releasing: Wanting ", "你正在释放：想要") + S.goalText.trim() + L(". Current wanting ", "。现在的想要强度 ") + cur + L(" out of 10.", " / 10。")) + '">' +
+        h += '<section class="' + cls + '" aria-label="' + esc(L("You are releasing: Wanting ", "你正在释放：想要") + S.goalText.trim() + L(". Current wanting ", "。现在的强度是 ") + cur + L(" out of 10.", " / 10。")) + '">' +
           '<div style="text-align:left">' +
             '<div class="anchor-state" data-lit="' + wantingLit.toFixed(2) + '" style="' + stateStyle(wantingLit) + '">' +
               '<p style="line-height:1.375"><span class="lead" style="' + labelStyle(wantingLit) + '">' + wantingLabel + '&nbsp;</span>' +
               '<span class="goal" style="' + goalStyle(wantingLit) + '">' + goal + '</span></p>' +
-              '<p class="desc">' + L("The ache of not having it yet.", "还没有得到的那种难受。") + '</p>' +
+              '<p class="desc">' + L("The ache of not having it yet.", "还没得到，心里难受。") + '</p>' +
             '</div>' +
             '<div class="anchor-state" data-lit="' + havingLit.toFixed(2) + '" style="' + stateStyle(havingLit) + '">' +
               '<p style="line-height:1.375"><span class="lead" style="' + labelStyle(havingLit) + '">' + havingLabel + '&nbsp;</span>' +
               '<span class="goal" style="' + goalStyle(havingLit) + '">' + goal + '</span></p>' +
-              '<p class="desc">' + L("The thing itself, here.", "它已经在这里。") + '</p>' +
+              '<p class="desc">' + L("The thing itself, here.", "它就在这里。") + '</p>' +
             '</div>' +
           '</div>';
       } else if (S.path === "wanting") {
@@ -524,14 +530,17 @@
       } else {
         var main = "";
         if (S.path === "feeling") main = S.feelingWord;
-        else if (S.path === "shortcut") main = isLoveStep() ? L("the love", "爱") : L("the feeling: not love", "那个感觉：不是爱");
+        else if (S.path === "shortcut") main = isLoveStep() ? L("the love", "爱") : L("the feeling of not love", "非爱的感觉");
         if (!main) return "";
-        var mainHTML = (S.path === "shortcut" && !isLoveStep())
-          ? L("the feeling:<br>not love", "那个感觉：<br>不是爱")
-          : esc(main);
-        h += '<section class="' + cls + '" aria-label="' + esc(L("You are releasing: ", "你正在释放：") + main) + '">' +
-          '<p class="prefix">' + L("You&rsquo;re releasing", "你正在释放") + '</p>' +
-          '<p class="main">' + mainHTML + '</p>';
+        if (S.path === "shortcut" && !isLoveStep()) {
+          h += '<section class="' + cls + '" aria-label="' + esc(L("You are releasing: ", "你正在释放：") + main) + '">' +
+            '<p class="prefix">' + L("You&rsquo;re releasing", "你正在释放") + '</p>' +
+            '<p class="main small">' + esc(main) + '</p>';
+        } else {
+          h += '<section class="' + cls + '" aria-label="' + esc(L("You are releasing: ", "你正在释放：") + main) + '">' +
+            '<p class="prefix">' + L("You&rsquo;re releasing", "你正在释放") + '</p>' +
+            '<p class="main">' + esc(main) + '</p>';
+        }
         if (S.path === "feeling" && showWantingLine && w) {
           h += '<div style="margin-top:0.75rem">' +
             '<p class="wanting-name">' + esc(wantingFull(w)) + '</p>' +
@@ -559,13 +568,13 @@
       var h = '<main class="screen-in wrap">' + langBarHTML() +
         '<div class="center-col">' +
           circle(170) +
-          '<h1 class="font-display" style="margin-top:2.5rem;max-width:28rem;font-size:3rem;font-weight:300;line-height:1.25">' + L("Nothing to fix, just release.", "无需修理，只需释放。") + '</h1>' +
-          '<p style="margin-top:1.5rem;max-width:28rem;font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' + L("Releasing is a way to let a feeling finish passing through you — instead of holding it down or acting it out.", "释放，是让一个感觉完整地穿过你——而不是把它压下去，或把它发泄出来。") + '</p>' +
-          '<div style="margin-top:2.5rem;width:100%;max-width:24rem">' + primaryBtn(L("Begin", "开始"), "begin") + '</div>' +
+          '<h1 class="font-display" style="margin-top:2.5rem;max-width:28rem;font-size:3rem;font-weight:300;line-height:1.25;text-align:center">' + L("Nothing to fix<br>just release.", "生命在于释放<br>而非修行") + '</h1>' +
+          '<p style="margin-top:1.5rem;max-width:28rem;font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' + L("Releasing is a way to let a feeling finish passing through you — instead of holding it down or acting it out.", "情绪来的时候，不压抑，不抗拒，允许它来，也允许它走——这就是释放。") + '</p>' +
+          '<div style="margin-top:2.5rem;width:100%;max-width:24rem">' + primaryBtn(L("Begin", "开始释放"), "begin") + '</div>' +
           '<div style="margin-top:2rem;display:flex;flex-direction:column;align-items:center;gap:1rem">' +
-            '<button type="button" class="link-strong" data-action="go-how">' + L("How it works", "它是怎么运作的") + '</button>';
+            '<button type="button" class="link-strong" data-action="go-how">' + L("How it works", "什么是释放法") + '</button>';
       if (total > 0) {
-        h += '<button type="button" class="link-plain" data-action="go-history">' + L("My releases (" + total + ")", "我的释放记录（" + total + "）") + '</button>';
+        h += '<button type="button" class="link-plain" data-action="go-history">' + L("My releases (" + total + ")", "我的释放记录") + '</button>';
       }
       h += '</div></div>' + footerHTML() + '</main>';
       return h;
@@ -573,10 +582,10 @@
 
     function howHTML() {
       var ways = LANG === "zh" ? [
-        ["一个感觉。", "从莱斯特的图表里选一个最准确的词——万念俱灰、悲伤、恐惧、欲望、愤怒或骄傲——释放那个感觉。"],
-        ["一个目标。", "目标留着。你只释放它下面的想要——那个难受的部分。"],
-        ["只是想要。", "不需要故事。直接去到想要认可、想要控制或想要安全。"],
-        ["捷径。", "每一个感觉，要么是爱，要么不是。释放那个感觉：不是爱——最后只剩下爱；连爱也释放掉，剩下的，是什么都扰动不了的安静。"]
+        ["释放当下的感觉。", "照莱斯特的情绪表，找到最贴切的词——万念俱灰、悲苦、恐惧、贪求、愤怒或自尊自傲——释放那个感觉。"],
+        ["释放目标。", "仅仅通过释放来达到目标。释放对目标的正面和负面的感受，去选择拥有目标。"],
+        ["释放三大想要。", "想要认可、想要控制，还是想要安全。"],
+        ["爱是捷径。", "对任何事物的感觉，如果不是爱，那就是非爱。释放掉非爱，剩下的只能是爱；最后连爱也放掉，你就到达了波澜不惊。"]
       ] : [
         ["A feeling.", "Pick the exact word from Lester&rsquo;s chart — apathy, grief, fear, lust, anger, or pride — and release that feeling."],
         ["A goal.", "You keep the goal. You release only the wanting underneath it — the part that aches."],
@@ -584,10 +593,10 @@
         ["The shortcut.", "Every feeling is either love, or it isn&rsquo;t. Release the feeling: not love, and only love is left — release even the love, and what remains is quiet that nothing can disturb."]
       ];
       var nots = LANG === "zh" ? [
-        ["不是压抑。", "先完整地感受这个感觉。什么都不往下压。"],
-        ["不是积极思考。", "没有肯定语，不假装。看清实际在那里的是什么。"],
-        ["不是用力。", "没有什么要掌握的，也没有等级要达到。释放是自然的——是抓紧松开时发生的事，不是另一件要努力做的事。"],
-        ["不是放弃目标。", "你可以放下想要，同时继续行动。行动通常会变得更容易，而不是更难。"]
+        ["释放法不是压抑。", "先让感觉在着，不往下压。"],
+        ["释放法不是积极思考。", "不用念肯定语，不用正向思维。有什么，放什么。"],
+        ["释放法不是用力。", "没什么要练成的，也没有功课要达到的。松手就是松手，不用使劲。"],
+        ["释放法不是放弃目标。", "放下想要，轻松去做事，让事情自然发展，让目标自然掉落。"]
       ] : [
         ["Not suppressing.", "You feel the feeling fully first. Nothing gets pushed down."],
         ["Not positive thinking.", "No affirmations, no pretending. You look at what&rsquo;s actually there."],
@@ -595,9 +604,9 @@
         ["Not giving up on goals.", "You can let go of the wanting and still take the action. The action usually gets easier, not harder."]
       ];
       var nums = LANG === "zh" ? [
-        "感觉像天气一样来去——只要你不抓着它。大多数感觉自己一会儿就过去了。留下的，是被抓着的那些。",
-        "每一个卡住的感觉下面，都藏着一个想要：想要认可、想要控制，或想要安全。想要就是那只抓紧的手。说出那个想要，你就能感觉到那只手本身。",
-        "你不是把感觉推开。你松开那个想要——感觉就会自己走，像天气一样。"
+        "感觉跟天气一样，来一阵就走。你不抓，它很快就过去。留下来的，都是被抓着的。",
+        "每个走不掉的感觉底下，都压着一个想要：想要认可、想要控制，或想要安全。想要，就是那只抓着不放的手。认出它，你就知道自己在抓什么。",
+        "你不用把感觉推开。松开那个想要，它自己就走了，跟天气一样。"
       ] : [
         "Feelings come and go like weather — when you don&rsquo;t grip them. Most feelings pass in moments on their own. The ones that stay are the ones being held.",
         "Under every stuck feeling is a want: approval, control, or security. Wanting is the grip. Name the want, and you can feel the grip itself.",
@@ -605,9 +614,8 @@
       ];
       var h = '<main class="screen-in wrap" style="padding-top:1rem;padding-bottom:1rem">' + langBarHTML() +
         '<div style="margin-top:1rem"><button type="button" class="link-plain" style="font-size:1rem;text-decoration:none" data-action="go-home" aria-label="' + L("Back to home", "回到首页") + '">&larr; ' + L("Back", "返回") + '</button></div>' +
-        '<h2 class="font-display" style="margin-top:2rem;font-size:2.25rem;font-weight:300">' + L("How it works", "它是怎么运作的") + '</h2>' +
-        '<p class="font-display" style="margin-top:1rem;font-size:1.5rem;font-weight:300;font-style:italic;line-height:1.375">' + L("Life is about releasing, not striving.", "生命在于释放，不在于用力。") + '</p>' +
-        '<p style="margin-top:0.75rem;font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' + L("Letting go isn&rsquo;t something you strive to get good at. It&rsquo;s what a feeling does on its own when you stop holding it.", "放下不是一件要努力练好的事。当你不再抓着它，一个感觉会自己走完。") + '</p>' +
+        '<h2 class="font-display" style="margin-top:2rem;font-size:2.25rem;font-weight:300">' + L("How it works", "什么是释放法") + '</h2>' +
+        '<p style="margin-top:0.75rem;font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' + L("Letting go isn&rsquo;t something you strive to get good at. It&rsquo;s what a feeling does on its own when you stop holding it.", "释放就是把手松开，允许感觉来，也允许它们离开") + '</p>' +
         '<div style="margin-top:2.5rem" class="stack-lg">';
       nums.forEach(function (t, i) {
         h += '<section class="card" style="padding:1.5rem"><p class="font-display" style="font-size:1.5rem;color:var(--apricot-deep)">' + (i + 1) + '</p>' +
@@ -615,22 +623,22 @@
       });
       h += '</div>' +
         '<section class="card" style="margin-top:2.5rem;padding:1.5rem">' +
-          '<h3 class="font-display" style="font-size:1.5rem;font-weight:300">' + L("Can&rsquo;t feel anything?", "找不到感觉？") + '</h3>' +
-          '<p style="margin-top:0.75rem;font-size:1.125rem;line-height:1.625">' + L("You don&rsquo;t have to feel it strongly for this to work. If nothing comes up, release from the head: just ask yourself the questions — could I let it go? would I? when? — answer honestly, and ask again. Back and forth. Stick with it, and the feeling loosens — often quietly, a few rounds in.", "找不到感觉也没关系，用大脑释放就行：把三个问题来回问自己，诚实回答，坚持下去，感觉会在几轮之后悄悄松开。") + '</p>' +
+          '<h3 class="font-display" style="font-size:1.5rem;font-weight:300">' + L("Can&rsquo;t feel anything?", "找不到释放的感觉？") + '</h3>' +
+          '<p style="margin-top:0.75rem;font-size:1.125rem;line-height:1.625">' + L("You don&rsquo;t have to feel it strongly for this to work. If nothing comes up, release from the head: just ask yourself the questions — could I let it go? would I? when? — answer honestly, and ask again. Back and forth. Stick with it, and the feeling loosens — often quietly, a few rounds in.", "没有感觉，可以直接用大脑释放，三个问题来回问，照实答。多问几轮，感觉常常不知不觉就松了。专注和坚持。") + '</p>' +
         '</section>' +
-        '<h3 class="font-display" style="margin-top:3rem;font-size:1.5rem;font-weight:300">' + L("Four ways to begin", "四种开始的方式") + '</h3>' +
+        '<h3 class="font-display" style="margin-top:3rem;font-size:1.5rem;font-weight:300">' + L("Four ways to begin", "四种释放路径") + '</h3>' +
         '<ul style="margin-top:1rem;list-style:none" class="stack">';
       ways.forEach(function (w) {
         h += '<li style="font-size:1.125rem;line-height:1.625"><strong>' + w[0] + '</strong> ' + w[1] + '</li>';
       });
       h += '</ul>' +
-        '<h3 class="font-display" style="margin-top:3rem;font-size:1.5rem;font-weight:300">' + L("Releasing is not", "释放不是") + '</h3>' +
+        '<h3 class="font-display" style="margin-top:3rem;font-size:1.5rem;font-weight:300">' + L("Releasing is not", "释放法") + '</h3>' +
         '<ul style="margin-top:1rem;list-style:none" class="stack">';
       nots.forEach(function (n) {
         h += '<li style="font-size:1.125rem;line-height:1.625"><span style="font-weight:500">' + n[0] + '</span> ' + n[1] + '</li>';
       });
       h += '</ul>' +
-        '<div style="margin-top:2.5rem">' + primaryBtn(L("Try it now", "现在试试"), "begin") + '</div>' +
+        '<div style="margin-top:2.5rem">' + primaryBtn(L("Try it now", "开始释放"), "begin") + '</div>' +
         footerHTML() + '</main>';
       return h;
     }
@@ -645,10 +653,10 @@
         '<div style="margin-top:1rem"><button type="button" class="link-plain" style="font-size:1rem;text-decoration:none" data-action="go-home" aria-label="' + L("Back to home", "回到首页") + '">&larr; ' + L("Back", "返回") + '</button></div>' +
         '<h2 class="font-display" style="margin-top:2rem;font-size:2.25rem;font-weight:300">' + L("My releases", "我的释放记录") + '</h2>';
       if (total === 0) {
-        h += '<div style="margin-top:2.5rem"><p style="font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' + L("Nothing here yet. Your first release will appear on this device after you finish a session.", "这里还什么都没有。完成一次释放之后，你的记录会出现在这个设备上。") + '</p>' +
+        h += '<div style="margin-top:2.5rem"><p style="font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' + L("Nothing here yet. Your first release will appear on this device after you finish a session.", "还空着。完成一次释放，记录就会存到这台设备上。") + '</p>' +
           '<div style="margin-top:2rem">' + primaryBtn(L("Begin", "开始"), "begin") + '</div></div>';
       } else {
-        h += '<p style="margin-top:0.75rem;font-size:1.125rem;color:var(--ink-soft)">' + (LANG === "zh" ? ("这个设备上有 " + total + " 条记录。") : (total + (total === 1 ? " release" : " releases") + " on this device.")) + '</p>' +
+        h += '<p style="margin-top:0.75rem;font-size:1.125rem;color:var(--ink-soft)">' + (LANG === "zh" ? ("这台设备上存了 " + total + " 条记录。") : (total + (total === 1 ? " release" : " releases") + " on this device.")) + '</p>' +
           '<ul style="margin-top:2rem;list-style:none" class="stack-lg">';
         list.forEach(function (r) {
           var d = new Date(r.date);
@@ -659,7 +667,7 @@
               '<p style="flex-shrink:0;font-size:0.875rem;color:var(--ink-soft)">' + dateStr + '</p></div>';
           if (!isShortcutTopic(r.topic)) {
             h += '<p style="margin-top:0.5rem;font-size:1rem;color:var(--ink-soft)">' + (LANG === "zh"
-              ? ("开始时 " + r.before + " · 离开时 " + r.after + (r.layers > 1 ? " · 共 " + r.layers + " 层" : ""))
+              ? ("进来时 " + r.before + " · 离开时 " + r.after + (r.layers > 1 ? " · 一共 " + r.layers + " 层" : ""))
               : ("Came in at " + r.before + " · left at " + r.after + (r.layers > 1 ? " · " + r.layers + " layers" : ""))) + '</p>';
           }
           h += '</li>';
@@ -682,20 +690,20 @@
       return S.path === "feeling" ? L("How strong is this feeling, from 0 to 10?", "这个感觉有多强，0 到 10？") : L("How strong is the wanting, from 0 to 10?", "这个想要有多强，0 到 10？");
     }
     function afterHeading() {
-      return S.path === "feeling" ? L("And now — how strong is the feeling?", "现在呢——这个感觉有多强？") : L("And now — how strong is the wanting?", "现在呢——这个想要有多强？");
+      return S.path === "feeling" ? L("And now — how strong is the feeling?", "现在呢，这个感觉还有多强？") : L("And now — how strong is the wanting?", "现在呢，这个想要还有多强？");
     }
 
     function questionBlock(heading, sub, buttons) {
-      return '<div class="grow" style="align-items:center">' +
-        '<div style="margin-top:1.5rem">' + circle(104) + '</div>' +
+      return '<div class="grow" style="align-items:center;justify-content:center;padding-bottom:1.5rem">' +
+        '<div>' + circle(104) + '</div>' +
         '<h2 class="font-display" style="margin-top:1.5rem;text-align:center;font-size:2.25rem;font-weight:300;line-height:1.3">' + heading + '</h2>' +
-        '<p style="margin-top:1rem;text-align:center;font-size:1.125rem;line-height:1.625;color:var(--ink-soft);max-width:28rem">' + sub + '</p>' +
+        (sub ? '<p style="margin-top:1rem;text-align:center;font-size:1.125rem;line-height:1.625;color:var(--ink-soft);max-width:28rem">' + sub + '</p>' : '') +
         '<div style="margin-top:2rem;width:100%;max-width:24rem" class="stack">' + buttons + '</div></div>';
     }
-    function breatheNote() { return L("Breathe with the circle. Answer honestly — any honest answer works.", "跟着圆的节奏呼吸。诚实回答——任何诚实的答案都可以。"); }
-    function yesNoButtons(next, yesLabel) {
+    function breatheNote() { return L("Breathe with the circle. Answer honestly — any honest answer works.", "跟着圆呼吸。照实答——答什么都行。"); }
+    function yesNoButtons(next, yesLabel, noLabel) {
       return primaryBtn(yesLabel, "x").replace('data-action="x"', 'data-action="answer" data-next="' + next + '"') +
-        quietBtn(L("No", "不"), "x").replace('data-action="x"', 'data-action="answer" data-next="' + next + '"') +
+        quietBtn(noLabel, "x").replace('data-action="x"', 'data-action="answer" data-next="' + next + '"') +
         quietBtn(L("Not sure", "不确定"), "x").replace('data-action="x"', 'data-action="answer" data-next="' + next + '"');
     }
 
@@ -705,38 +713,38 @@
 
         case "choose":
           h = '<div class="grow">' +
-            '<h2 class="font-display" style="margin-top:3.5rem;font-size:2.25rem;font-weight:300;line-height:1.3">' + L("What would you like to release?", "你想释放什么？") + '</h2>' +
-            '<p style="margin-top:1rem;font-size:1.125rem;color:var(--ink-soft)">' + L("Choose where to start. There&rsquo;s no wrong door.", "选一个开始的地方。没有错的门。") + '</p>' +
+            '<h2 class="font-display" style="margin-top:2.5rem;font-size:2.25rem;font-weight:300;line-height:1.3">' + L("What would you like to release?", "你想释放什么？") + '</h2>' +
+            '<p style="margin-top:1rem;font-size:1.125rem;color:var(--ink-soft)">' + L("Choose where to start. There&rsquo;s no wrong door.", "选一个入口，哪个都行。") + '</p>' +
             '<div style="margin-top:2rem" class="stack-lg">' +
               '<button type="button" class="choice-card" data-action="choose-feeling" aria-label="' + L("Release a feeling", "释放一个感觉") + '">' +
-                '<span class="card-title">' + L("A feeling", "一个感觉") + '</span>' +
-                '<span class="card-sub">' + L("A mood, a heaviness, something sitting in your body or heart. We&rsquo;ll find its exact name.", "一种情绪、一种沉重，某个停留在身体或心里的东西。我们会找到它准确的名字。") + '</span></button>' +
+                '<span class="card-title">' + L("A feeling", "释放感觉") + '</span>' +
+                '<span class="card-sub">' + L("A mood, a heaviness, something sitting in your body or heart. We&rsquo;ll find its exact name.", "情绪也好，沉重也好，堵在身体或心里的东西也好——我们来找到它准确的名字。") + '</span></button>' +
               '<button type="button" class="choice-card" data-action="choose-goal" aria-label="' + L("Release the wanting around a goal", "释放一个目标周围的想要") + '">' +
                 '<span class="card-title">' + L("A goal", "一个目标") + '</span>' +
-                '<span class="card-sub">' + L("Something you want to have. The goal stays — we release only the wanting.", "你想拥有的某样东西。目标留着——我们只释放想要。") + '</span></button>' +
+                '<span class="card-sub">' + L("Something you want to have. The goal stays — we release only the wanting.", "你想得到的东西。目标留着，放的只是想要。") + '</span></button>' +
               '<button type="button" class="choice-card" data-action="choose-wanting" aria-label="' + L("Release just the wanting", "只释放想要") + '">' +
-                '<span class="card-title">' + L("Just the wanting", "只是想要") + '</span>' +
-                '<span class="card-sub">' + L("No feeling or goal needed. Go straight to approval, control, or security.", "不需要感觉，也不需要目标。直接去到想要认可、想要控制或想要安全。") + '</span></button>' +
+                '<span class="card-title">' + L("Just the wanting", "三大想要") + '</span>' +
+                '<span class="card-sub">' + L("No feeling or goal needed. Go straight to approval, control, or security.", "不用先有感觉或目标。直接看想要：认可、控制，还是安全。") + '</span></button>' +
               '<button type="button" class="choice-card" data-action="choose-shortcut" aria-label="' + L("Love is the shortcut", "爱是捷径") + '" ' +
                 'style="border:2px solid var(--apricot);background:color-mix(in srgb, var(--apricot) 14%, var(--card));box-shadow:0 0 22px var(--ring)">' +
-                '<span style="display:inline-block;border-radius:999px;background:var(--apricot);padding:0.125rem 0.625rem;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#fff">' + L("Shortcut", "捷径") + '</span>' +
+                '<span style="display:inline-block;border-radius:999px;background:var(--apricot);padding:0.125rem 0.625rem;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#fff">' + L("Shortcut", "快捷方式") + '</span>' +
                 '<span class="card-title" style="margin-top:0.5rem">' + L("Love is the shortcut", "爱是捷径") + '</span>' +
-                '<span class="card-sub">' + L("No topic to pick. Just the feeling that&rsquo;s here — the fast lane, straight to quiet.", "不用选话题。就是此刻在这里的那个感觉——一条直路，直接去到安静。") + '</span></button>' +
+                '<span class="card-sub">' + L("No topic to pick. Just the feeling that&rsquo;s here — the fast lane, straight to quiet.", "释放掉非爱，就只剩下爱") + '</span></button>' +
             '</div></div>';
           break;
 
         case "shortcutChoice":
-          h = questionBlock(L("What is here right now — love, or not love?", "现在这个感觉，是爱，还是不是爱？"), "",
-            primaryBtn(L("Love", "爱"), "shortcut-choice-love") + quietBtn(L("Not love", "不是爱"), "shortcut-choice-notlove"));
+          h = questionBlock(L("What is here right now?", "此刻，这里是什么？"), "",
+            primaryBtn(L("Love", "爱"), "shortcut-choice-love") + quietBtn(L("Not love", "非爱"), "shortcut-choice-notlove"));
           break;
 
         case "shortcutIntro":
           h = '<div class="grow">' +
             '<div style="margin-top:2.5rem;display:flex;justify-content:center">' + circle(120) + '</div>' +
             '<div style="margin-top:2.5rem;text-align:center" class="stack-lg">' +
-              '<p class="font-display" style="font-size:1.875rem;font-weight:300;line-height:1.375">' + L("Every feeling is either love, or it isn&rsquo;t.", "每一个感觉，要么是爱，要么不是。") + '</p>' +
-              '<p class="font-display" style="font-size:1.875rem;font-weight:300;line-height:1.375">' + L("Let go of the feeling: not love, and only love is left.", "放下那个感觉：不是爱，就只剩下爱。") + '</p>' +
-              '<p class="font-display" style="font-size:1.875rem;font-weight:300;line-height:1.375">' + L("Let go of the love too, and what remains is quiet that nothing can disturb.", "连爱也放下，剩下的，是什么都扰动不了的安静。") + '</p>' +
+              '<p class="font-display" style="font-size:1.875rem;font-weight:300;line-height:1.375">' + L("Every feeling is either love, or it isn&rsquo;t.", "每个感觉，要么是爱，要么是非爱。") + '</p>' +
+              '<p class="font-display" style="font-size:1.875rem;font-weight:300;line-height:1.375">' + L("Let go of the feeling: not love, and only love is left.", "放掉非爱，剩下的就只有爱。") + '</p>' +
+              '<p class="font-display" style="font-size:1.875rem;font-weight:300;line-height:1.375">' + L("Let go of the love too, and what remains is quiet that nothing can disturb.", "连爱也放掉，剩下的安静，谁也扰动不了。") + '</p>' +
             '</div>' +
             '<div style="margin-top:auto;padding-top:3rem">' + primaryBtn(L("Begin", "开始"), "shortcut-begin") + '</div></div>';
           break;
@@ -745,12 +753,12 @@
           var dk = S.dontKnowOpen;
           h = '<div class="grow">' +
             '<h2 class="font-display" style="margin-top:2.5rem;font-size:2.25rem;font-weight:300;line-height:1.3">' + L("Which feeling is closest?", "哪个感觉最接近？") + '</h2>' +
-            '<p style="margin-top:1rem;font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' + L("From Lester Levenson&rsquo;s chart of emotions. Tap a group to see its words, then tap the word that fits.", "来自莱斯特·莱文森的情绪图表。点开一组看它的词，再点那个最贴切的词。") + '</p>' +
+            '<p style="margin-top:1rem;font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' + L("From Lester Levenson&rsquo;s chart of emotions. Tap a group to see its words, then tap the word that fits.", "这是莱斯特·莱文森的情绪表。点开一组，选最贴切的那个词。") + '</p>' +
             '<button type="button" class="choice-card" data-action="dont-know" aria-expanded="' + dk + '" style="margin-top:1.5rem;padding:1.25rem;border-color:var(--apricot);box-shadow:0 0 0 1px var(--ring)">' +
-              '<span class="font-display" style="font-size:1.25rem">' + L("I don&rsquo;t know what I feel", "我不知道自己是什么感觉") + '</span>' +
+              '<span class="font-display" style="font-size:1.25rem">' + L("I don&rsquo;t know what I feel", "我不知道是什么感觉") + '</span>' +
               (dk
-                ? '<span class="card-sub" style="margin-top:0.5rem">' + L("A blank, flat feeling is usually Apathy on the chart — everything feels pointless and dead, and even desire feels dead. The Apathy words are open below.", "一片空白、平平的感觉，在图表上通常是万念俱灰——一切都觉得没意义、死了，连欲望都死了。万念俱灰那一组已经在下面打开了。") + '</span>'
-                : '<span class="card-sub">' + L("Blank, flat, nothing? Start here.", "空白、平平的、什么都没有？从这里开始。") + '</span>') +
+                ? '<span class="card-sub" style="margin-top:0.5rem">' + L("A blank, flat feeling is usually Apathy on the chart — everything feels pointless and dead, and even desire feels dead. The Apathy words are open below.", "脑子空白、心里发平，多半就是万念俱灰：什么都没意思，连想要都没有了。下面那一组已经打开了。") + '</span>'
+                : '<span class="card-sub">' + L("Blank, flat, nothing? Start here.", "空白、发木、什么感觉都没有？点这里。") + '</span>') +
             '</button>' +
             '<div style="margin-top:1.5rem;padding-bottom:1rem" class="stack">';
           EMOTION_GROUPS.forEach(function (g) {
@@ -770,14 +778,14 @@
             h += '</div>';
           });
           h += '</div>' +
-            '<p style="text-align:center;font-size:0.875rem;color:var(--ink-soft)">' + L("Chart: Apathy · Grief · Fear · Lust · Anger · Pride (AGFLAP)", "图表：万念俱灰 · 悲伤 · 恐惧 · 欲望 · 愤怒 · 骄傲（AGFLAP）") + '</p></div>';
+            '<p style="text-align:center;font-size:0.875rem;color:var(--ink-soft)">' + L("Chart: Apathy · Grief · Fear · Lust · Anger · Pride (AGFLAP)", "情绪表：万念俱灰 · 悲苦 · 恐惧 · 贪求 · 愤怒 · 自尊自傲（AGFLAP）") + '</p></div>';
           break;
         }
 
         case "goalInput":
           h = '<div class="grow">' +
-            '<h2 class="font-display" style="margin-top:3.5rem;font-size:2.25rem;font-weight:300;line-height:1.3">' + L("What do you want to have?", "你想拥有什么？") + '</h2>' +
-            '<p style="margin-top:1rem;font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' + L("Name the goal just as you want it. You&rsquo;re not giving it up — we&rsquo;ll only release the wanting around it.", "就按你想要的样子说出这个目标。你不是要放弃它——我们只释放它周围的想要。") + '</p>' +
+            '<h2 class="font-display" style="margin-top:2.5rem;font-size:2.25rem;font-weight:300;line-height:1.3">' + L("What do you want to have?", "你想拥有什么？") + '</h2>' +
+            '<p style="margin-top:1rem;font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' + L("Name the goal just as you want it. You&rsquo;re not giving it up — we&rsquo;ll only release the wanting around it.", "照你真正想要的样子写下来。不是要你放弃它——要放的只是围着它的那个想要。") + '</p>' +
             '<label for="goal-input" class="sr-only">' + L("What do you want to have?", "你想拥有什么？") + '</label>' +
             '<input id="goal-input" type="text" maxlength="120" value="' + esc(S.goalText) + '" placeholder="' + L("e.g. a million dollars", "例如：一百万美元") + '" class="text-input" style="margin-top:2rem" autocomplete="off">' +
             '<div style="margin-top:auto;padding-top:3rem">' + primaryBtn(L("Continue", "继续"), "goal-continue", S.goalText.trim().length === 0) + '</div></div>';
@@ -787,23 +795,23 @@
           var g = esc(S.goalText.trim());
           var fc = S.forkChoice;
           h = '<div class="grow">' +
-            '<h2 class="font-display" style="margin-top:3.5rem;text-align:center;font-size:2.25rem;font-weight:300;line-height:1.3">' + L("Which would you rather have?", "你更想要哪一个？") + '</h2>' +
-            '<p style="margin-top:1rem;text-align:center;font-size:1.125rem;color:var(--ink-soft)">' + L("Sit with both for a moment. Answer honestly.", "两个都停留一会儿。诚实回答。") + '</p>' +
+            '<h2 class="font-display" style="margin-top:2.5rem;text-align:center;font-size:2.25rem;font-weight:300;line-height:1.3">' + L("Which would you rather have?", "你更想要哪一个？") + '</h2>' +
+            '<p style="margin-top:1rem;text-align:center;font-size:1.125rem;color:var(--ink-soft)">' + L("Sit with both for a moment. Answer honestly.", "两个都想一想，照实选。") + '</p>' +
             '<div style="margin-top:2.5rem" class="stack-lg">' +
               '<button type="button" class="choice-card' + (fc === "wanting" ? " selected" : "") + '" data-action="fork-wanting" aria-pressed="' + (fc === "wanting") + '" aria-label="' + esc(L("Wanting ", "想要") + S.goalText.trim()) + '">' +
                 '<span style="font-size:0.875rem;font-weight:600;color:var(--apricot-deep)">' + L("Wanting", "想要") + '</span>' +
                 '<span class="font-display" style="margin-top:0.25rem;display:block;font-size:1.875rem;line-height:1.25;overflow-wrap:break-word">' + g + '</span>' +
-                '<span class="card-sub">' + L("The ache of not having it yet.", "还没有得到的那种难受。") + '</span></button>' +
+                '<span class="card-sub">' + L("The ache of not having it yet.", "还没得到，心里难受。") + '</span></button>' +
               '<button type="button" class="choice-card' + (fc === "having" ? " selected" : "") + '" data-action="fork-having" aria-pressed="' + (fc === "having") + '" aria-label="' + esc(L("Having ", "拥有") + S.goalText.trim()) + '">' +
                 '<span style="font-size:0.875rem;font-weight:600;color:var(--apricot-deep)">' + L("Having", "拥有") + '</span>' +
                 '<span class="font-display" style="margin-top:0.25rem;display:block;font-size:1.875rem;line-height:1.25;overflow-wrap:break-word">' + g + '</span>' +
-                '<span class="card-sub">' + L("The thing itself, here.", "它已经在这里。") + '</span></button>' +
+                '<span class="card-sub">' + L("The thing itself, here.", "它就在这里。") + '</span></button>' +
             '</div>';
           if (fc !== null) {
             h += '<p style="margin-top:2rem;text-align:center;font-size:1.125rem;line-height:1.625">' +
               (fc === "having"
-                ? L("The goal stays. What we release is only the wanting — the part that aches.", "目标还在。我们释放的只是'想要'——那个难受的部分。")
-                : L("Noticing that is honest. Wanting can feel safer than having — and that, too, can be released.", "能注意到这一点，就是诚实。想要有时感觉比拥有更安全——而那个，也可以释放。")) +
+                ? L("The goal stays. What we release is only the wanting — the part that aches.", "目标留着。要放的只是想要——难受的那部分。")
+                : L("Noticing that is honest. Wanting can feel safer than having — and that, too, can be released.", "能看清这一点，很诚实。想要，有时比拥有更让人安心——这个，也能放掉。")) +
               '</p>';
           }
           h += '<div style="margin-top:auto;padding-top:2.5rem">' + primaryBtn(L("Continue — release the wanting", "继续——释放想要"), "fork-continue", fc === null) + '</div></div>';
@@ -814,9 +822,9 @@
           h = '<div class="grow">' +
             '<h2 class="font-display" style="margin-top:2rem;font-size:2.25rem;font-weight:300;line-height:1.3">' + beforeHeading() + '</h2>' +
             '<p style="margin-top:1rem;font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' +
-              (S.path === "feeling" ? L("Let the feeling be here, and notice its strength.", "让感觉在这里，留意它的强度。") : L("Notice the pull of the wanting itself.", "留意想要本身的那股拉力。")) +
-              L(" No right answer. Just notice.", "没有对错。只是留意。") + '</p>' +
-            '<div style="margin-top:4rem">' + sliderHTML(S.before, beforeLabel()) + '</div>' +
+              (S.path === "feeling" ? L("Let the feeling be here, and notice its strength.", "让感觉先在着，感受一下它有多强。") : L("Notice the pull of the wanting itself.", "感受一下想要的那股劲。")) +
+              L(" No right answer. Just notice.", "没有对错，留意就行。") + '</p>' +
+            '<div style="margin-top:3rem">' + sliderHTML(S.before, beforeLabel()) + '</div>' +
             '<div style="margin-top:auto;padding-top:3rem">' + primaryBtn(L("Continue", "继续"), "before-continue") + '</div></div>';
           break;
 
@@ -824,11 +832,11 @@
           var firstWanting = S.path === "wanting" && S.layers === 1 && !S.hasBefore;
           h = '<div class="grow">' +
             '<h2 class="font-display" style="margin-top:2rem;font-size:2.25rem;font-weight:300;line-height:1.3">' +
-              (firstWanting ? L("Which wanting is strongest right now?", "此刻哪个想要最强？") : L("What do you want most here?", "在这里，你最想要什么？")) + '</h2>' +
+              (firstWanting ? L("Which wanting is strongest right now?", "此刻哪个想要最强？") : L("What do you want most here?", "这里面，你最想要什么？")) + '</h2>' +
             '<p style="margin-top:1rem;font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' +
               (firstWanting
-                ? L("Every feeling rides on one of these three. Pick the one that feels closest — we release that wanting directly.", "每一个感觉都骑在三个想要中的一个上。选最接近的那个——我们直接释放那个想要。")
-                : L("Underneath the " + nounForQuestions() + " there&rsquo;s usually a want. Pick the one that feels closest.", "在那个" + (nounForQuestions() === "feeling" ? "感觉" : "想要") + "下面，通常藏着一个想要。选最接近的那个。") + (S.layers > 1 ? L(" It may be different this layer.", "这一层可能不一样。") : "")) +
+                ? L("Every feeling rides on one of these three. Pick the one that feels closest — we release that wanting directly.", "每个感觉底下，都是这三个想要之一。选最像的那个，我们直接放它。")
+                : L("Underneath the " + nounForQuestions() + " there&rsquo;s usually a want. Pick the one that feels closest.", "这个" + (nounForQuestions() === "feeling" ? "感觉" : "想要") + "底下，通常还有一个想要。挑最像的那个。") + (S.layers > 1 ? L(" It may be different this layer.", "这一层可能换了。") : "")) +
             '</p>' +
             '<div style="margin-top:2rem" class="stack-lg">';
           WANTINGS.forEach(function (w) {
@@ -846,68 +854,68 @@
         case "would": {
           var isCould = S.step === "could";
           var heading = isCould
-            ? L("Could you let this " + nounForQuestions() + " go?", "你能放下它吗？")
-            : L("Would you let it go, if you could?", "你愿意放下它吗？");
+            ? L("Could you let it go?", "你能放下它吗？")
+            : L("Would you let it go,<br>if you could?", "你愿意放下它吗？");
           var next = isCould ? "would" : "when";
-          h = questionBlock(heading, breatheNote(), yesNoButtons(next, isCould ? L("Yes", "能") : L("Yes", "愿意")));
+          h = questionBlock(heading, breatheNote(), yesNoButtons(next, isCould ? L("Yes", "能") : L("Yes", "愿意"), isCould ? L("No", "不能") : L("No", "不愿意")));
           break;
         }
 
         case "when":
-          h = questionBlock(L("When?", "什么时候？"), L("The only time letting go ever happens is now.", "放下只发生在现在。"),
+          h = questionBlock(L("When?", "什么时候？"), L("The only time letting go ever happens is now.", "放下，只能发生在现在。"),
             primaryBtn(L("Now", "现在"), "when-now"));
           break;
 
         case "shortcutCheck":
-          h = questionBlock(L("Is anything that isn&rsquo;t love still here?", "还有不是爱的感觉在吗？"),
-            L("Another layer may look completely different — whatever comes up is what&rsquo;s next.", "下一层可能看起来完全不同——浮现什么，什么就是下一个。"),
-            primaryBtn(L("Still something there", "还有"), "check-still") + quietBtn(L("Only love is here", "只剩下爱了"), "check-love"));
+          h = questionBlock(L("What is the feeling now?", "现在是什么感觉？"),
+            "",
+            primaryBtn(L("Not love", "非爱"), "check-still") + quietBtn(L("Love", "爱"), "check-love"));
           break;
 
         case "after":
           h = '<div class="grow">' +
             '<h2 class="font-display" style="margin-top:2rem;font-size:2.25rem;font-weight:300;line-height:1.3">' + afterHeading() + '</h2>' +
-            '<p style="margin-top:1rem;font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' + L("Check again, honestly. Whatever it is, it&rsquo;s fine.", "再诚实地看一次。不管是多少，都没关系。") + '</p>' +
-            '<div style="margin-top:4rem">' + sliderHTML(S.after, S.path === "feeling" ? L("How strong is the feeling now, from 0 to 10?", "这个感觉现在有多强，0 到 10？") : L("How strong is the wanting now, from 0 to 10?", "这个想要现在有多强，0 到 10？")) + '</div>' +
+            '<p style="margin-top:1rem;font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' + L("Check again, honestly. Whatever it is, it&rsquo;s fine.", "再照实看一次。多少都行。") + '</p>' +
+            '<div style="margin-top:3rem">' + sliderHTML(S.after, S.path === "feeling" ? L("How strong is the feeling now, from 0 to 10?", "这个感觉现在有多强，0 到 10？") : L("How strong is the wanting now, from 0 to 10?", "这个想要现在有多强，0 到 10？")) + '</div>' +
             '<div style="margin-top:auto;padding-top:3rem">' + primaryBtn(L("Continue", "继续"), "after-continue") + '</div></div>';
           break;
 
         case "layerChoice":
-          h = questionBlock(L("There&rsquo;s still something there — " + S.after + " out of 10.", "还有东西在——10 分里的 " + S.after + " 分。"),
+          h = questionBlock(L("There&rsquo;s still something there — " + S.after + " out of 10.", "还没放完——现在是 " + S.after + " 分（满分 10 分）。"),
             S.path === "feeling"
-              ? L("Feelings often come in layers. Under this one there may be a different want. Or you can simply stop here — stopping is fine too.", "感觉常常是一层一层的。这一层下面，可能藏着另一个想要。也可以就停在这里——停下也完全可以。")
-              : L("Wanting often comes in layers. Under this one there may be a different want. Or you can simply stop here — stopping is fine too.", "想要常常是一层一层的。这一层下面，可能藏着另一个想要。也可以就停在这里——停下也完全可以。"),
-            primaryBtn(L("Go another layer", "再释放一层"), "another-layer") + quietBtn(L("That&rsquo;s enough for now", "先到这里"), "finish-now"));
+              ? L("Feelings often come in layers. Under this one there may be a different want. Or you can simply stop here — stopping is fine too.", "感觉常常一层一层来。这层底下，可能还有另一个想要。停在这里也行，完全可以。")
+              : L("Wanting often comes in layers. Under this one there may be a different want. Or you can simply stop here — stopping is fine too.", "想要常常一层一层来。这层底下，可能还有另一个想要。停在这里也行，完全可以。"),
+            primaryBtn(L("Continue releasing", "继续释放"), "continue-releasing") + quietBtn(L("Go another layer", "再释放一层"), "another-layer") + quietBtn(L("That&rsquo;s enough for now", "先到这里"), "finish-now"));
           break;
 
         case "shortcutTurning":
-          h = '<div class="grow" style="align-items:center">' +
-            '<div style="margin-top:1.5rem">' + circle(120) + '</div>' +
-            '<h2 class="font-display" style="margin-top:2rem;text-align:center;font-size:3rem;font-weight:300;line-height:1.3">' + L("Only love is left.", "只剩下爱。") + '</h2>' +
-            '<p style="margin-top:1rem;max-width:28rem;text-align:center;font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' + L("The feeling: not love is gone. You can rest here — this is a complete ending.", "那个'不是爱'的感觉已经走了。你可以在这里停下——这是一个完整的结束。") + '</p>' +
-            '<div style="margin-top:2.5rem;width:100%;max-width:24rem" class="stack">' +
+          h = '<div class="grow" style="align-items:center;justify-content:center;padding-bottom:1.5rem">' +
+            '<div>' + circle(104) + '</div>' +
+            '<h2 class="font-display" style="margin-top:1.5rem;text-align:center;font-size:2.25rem;font-weight:300;line-height:1.3">' + L("Only love is left.", "只剩下爱。") + '</h2>' +
+            '<p style="margin-top:1rem;max-width:28rem;text-align:center;font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' + L("The feeling: not love is gone. You can rest here — this is a complete ending.", "非爱的感觉已经走了。停在这里，就是一个完整的结束。") + '</p>' +
+            '<div style="margin-top:2rem;width:100%;max-width:24rem" class="stack">' +
               quietBtn(L("Rest here", "就停在这里"), "rest-here") + primaryBtn(L("Go one step further", "再往前一步"), "go-further") +
             '</div></div>';
           break;
 
         case "loveIntro":
-          h = '<div class="grow" style="align-items:center">' +
-            '<div style="margin-top:1.5rem">' + circle(104) + '</div>' +
-            '<p class="font-display" style="margin-top:2rem;max-width:28rem;text-align:center;font-size:1.875rem;font-weight:300;line-height:1.375">' + L("Love, held on to, is still a feeling. Underneath it is the quiet that can&rsquo;t be disturbed.", "爱，一旦抓着，也还是一个感觉。它的下面，是什么都扰动不了的安静。") + '</p>' +
-            '<div style="margin-top:2.5rem;width:100%;max-width:24rem">' + primaryBtn(L("Continue", "继续"), "love-continue") + '</div></div>';
+          h = '<div class="grow" style="align-items:center;justify-content:center;padding-bottom:1.5rem">' +
+            '<div>' + circle(104) + '</div>' +
+            '<p class="font-display" style="margin-top:1.5rem;max-width:28rem;text-align:center;font-size:1.875rem;font-weight:300;line-height:1.375">' + L("Love, held on to, is still a feeling. Underneath it is the quiet that can&rsquo;t be disturbed.", "爱，抓着不放，也还是个感觉。它底下，是谁也扰动不了的安静。") + '</p>' +
+            '<div style="margin-top:2rem;width:100%;max-width:24rem">' + primaryBtn(L("Continue", "继续"), "love-continue") + '</div></div>';
           break;
 
         case "loveCould":
         case "loveWould": {
           var isLC = S.step === "loveCould";
-          var lHeading = isLC ? L("Could you let even the love go?", "你能连爱也放下吗？") : L("Would you let it go, if you could?", "你愿意放下它吗？");
+          var lHeading = isLC ? L("Could you let even the love go?", "连爱也能放下吗？") : L("Would you let it go,<br>if you could?", "你愿意放下它吗？");
           var lNext = isLC ? "loveWould" : "loveWhen";
-          h = questionBlock(lHeading, breatheNote(), yesNoButtons(lNext, isLC ? L("Yes", "能") : L("Yes", "愿意")));
+          h = questionBlock(lHeading, breatheNote(), yesNoButtons(lNext, isLC ? L("Yes", "能") : L("Yes", "愿意"), isLC ? L("No", "不能") : L("No", "不愿意")));
           break;
         }
 
         case "loveWhen":
-          h = questionBlock(L("When?", "什么时候？"), L("The only time letting go ever happens is now.", "放下只发生在现在。"),
+          h = questionBlock(L("When?", "什么时候？"), L("The only time letting go ever happens is now.", "放下，只能发生在现在。"),
             primaryBtn(L("Now", "现在"), "love-now"));
           break;
       }
@@ -933,7 +941,7 @@
     function endHTML(total) {
       var inner = "";
       if (S.path === "shortcut" && S.shortcutEnding === "quiet") {
-        inner = '<h2 class="font-display" style="margin-top:2.5rem;font-size:3rem;font-weight:300;line-height:1.3">' + L("Imperturbable.", "波澜不惊。") + '</h2>' +
+        inner = '<h2 class="font-display" style="margin-top:2.5rem;font-size:2.25rem;font-weight:300;line-height:1.3">' + L("Imperturbable.", "波澜不惊。") + '</h2>' +
           '<p style="margin-top:1rem;max-width:28rem;font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' + L("Nothing left to disturb.", "再没有什么能扰动你了。") + '</p>';
       } else if (S.path === "shortcut" && S.shortcutEnding === "rest") {
         inner = '<h2 class="font-display" style="margin-top:2.5rem;font-size:2.25rem;font-weight:300;line-height:1.3">' + L("Only love is left.", "只剩下爱。") + '</h2>';
@@ -941,24 +949,24 @@
         inner = '<h2 class="font-display" style="margin-top:2.5rem;max-width:28rem;font-size:2.25rem;font-weight:300;line-height:1.3;overflow-wrap:break-word">' + (LANG === "zh"
           ? ('<span style="font-weight:500;color:var(--apricot-deep)">拥有</span>' + esc(S.goalText.trim()) + '。')
           : ('<span style="font-weight:500;color:var(--apricot-deep)">Having</span> ' + esc(S.goalText.trim()) + '.')) + '</h2>' +
-          '<p style="margin-top:0.75rem;max-width:28rem;font-size:0.875rem;line-height:1.625;color:var(--ink-soft)">' + L("Wanting is the feeling of not having it. When the wanting goes, what&rsquo;s left is having.", "想要，就是'还没有'的感觉。想要走了，剩下的就是拥有。") + '</p>';
+          '<p style="margin-top:0.75rem;max-width:28rem;font-size:0.875rem;line-height:1.625;color:var(--ink-soft)">' + L("Wanting is the feeling of not having it. When the wanting goes, what&rsquo;s left is having.", "想要，就是觉得自己还没有。想要一走，剩下的就是拥有。") + '</p>';
       } else if (S.after === 0) {
         inner = '<h2 class="font-display" style="margin-top:2.5rem;font-size:2.25rem;font-weight:300;line-height:1.3">' + L("Quiet.", "安静。") + '</h2>' +
-          '<p style="margin-top:1rem;max-width:28rem;font-size:1.25rem;line-height:1.625">' + L("That&rsquo;s what&rsquo;s underneath all of it.", "那是这一切底下的东西。") + '</p>';
+          '<p style="margin-top:1rem;max-width:28rem;font-size:1.25rem;line-height:1.625">' + L("That&rsquo;s what&rsquo;s underneath all of it.", "一切的底下，就是这个。") + '</p>';
       } else {
         inner = '<h2 class="font-display" style="margin-top:2.5rem;max-width:28rem;font-size:1.875rem;font-weight:300;line-height:1.3">' + (LANG === "zh"
-          ? ("你进来时是 " + S.before + "。你离开时是 " + S.after + "。")
+          ? ("进来时 " + S.before + " 分，离开时 " + S.after + " 分。")
           : ("You came in at " + S.before + ". You&rsquo;re leaving at " + S.after + ".")) + '</h2>';
       }
       if (S.after !== 0 && S.after < S.before) {
-        inner += '<p style="margin-top:1.25rem;max-width:28rem;font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' + L("It moved. That&rsquo;s how this works — a little looser each time you look at it honestly.", "它动了。这就是它的运作方式——每诚实地看一次，就松一点。") + '</p>';
+        inner += '<p style="margin-top:1.25rem;max-width:28rem;font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' + L("It moved. That&rsquo;s how this works — a little looser each time you look at it honestly.", "它松动了。就是这样：每照实看一次，就松开一点。") + '</p>';
       }
       if (S.after !== 0 && S.after >= S.before) {
-        inner += '<p style="margin-top:1.25rem;max-width:28rem;font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' + L("It didn&rsquo;t move much this time. That happens. Noticing it clearly is still part of letting it pass — no striving needed.", "这次它没怎么动。也会这样。看清它，本身就是让它通过的一部分——不需要用力。") + '</p>';
+        inner += '<p style="margin-top:1.25rem;max-width:28rem;font-size:1.125rem;line-height:1.625;color:var(--ink-soft)">' + L("It didn&rsquo;t move much this time. That happens. Noticing it clearly is still part of letting it pass — no striving needed.", "这次没怎么动，也正常。光是看清它，就已经在让它过去了。不用使劲。") + '</p>';
       }
       if (S.after === 0 && S.path !== "shortcut") {
         inner += '<p style="margin-top:1.25rem;font-size:1.125rem;color:var(--ink-soft)">' + (LANG === "zh"
-          ? ("你进来时是 " + S.before + "。你离开时是 0。")
+          ? ("进来时 " + S.before + " 分，离开时 0 分。")
           : ("You came in at " + S.before + ". You&rsquo;re leaving at 0.")) + '</p>';
       }
       var h = '<main class="screen-in wrap">' + langBarHTML() + '<div class="center-col">' +
@@ -980,13 +988,13 @@
       S.path = null; S.feelingWord = ""; S.expandedGroup = null; S.dontKnowOpen = false;
       S.goalText = ""; S.forkChoice = null; S.shortcutEnding = null; S.recordTopic = "";
       S.before = 5; S.wanting = null; S.after = 5; S.layers = 1;
-      S.hasBefore = false; S.finished = false; S.saved = false;
+      S.hasBefore = false; S.hasAfter = false; S.finished = false; S.saved = false;
       S.view = "session"; S.step = "choose";
       render(true);
     }
 
     function shortcutTopic() {
-      return L("Shortcut — the feeling: not love", "捷径——那个感觉：不是爱");
+      return L("Shortcut — the feeling: not love", "捷径——那个感觉：非爱");
     }
 
     function finishSession(finalAfter, topicOverride) {
@@ -1079,8 +1087,10 @@
       "check-love": function () { goStep("shortcutTurning"); },
 
       "after-continue": function () {
+        S.hasAfter = true;
         if (S.after === 0) finishSession(0); else goStep("layerChoice");
       },
+      "continue-releasing": function () { goStep("could"); },
       "another-layer": function () { S.layers += 1; S.wanting = null; goStep("wanting"); },
       "finish-now": function () { finishSession(S.after); },
 
@@ -1092,7 +1102,7 @@
       "love-continue": function () { goStep("loveCould"); },
       "love-now": function () {
         S.shortcutEnding = "quiet"; S.after = 0;
-        finishSession(0, L("Shortcut — the feeling: not love (through love, to imperturbable)", "捷径——那个感觉：不是爱（经由爱，到波澜不惊）"));
+        finishSession(0, L("Shortcut — the feeling: not love (through love, to imperturbable)", "捷径——那个感觉：非爱（经由爱，到波澜不惊）"));
       }
     };
 
@@ -1122,7 +1132,7 @@
       var t = e.target;
       if (t.id === "intensity-slider") {
         var v = Number(t.value);
-        if (S.step === "before") S.before = v; else if (S.step === "after") S.after = v;
+        if (S.step === "before") S.before = v; else if (S.step === "after") { S.after = v; S.hasAfter = true; }
         t.style.setProperty("--fill", (v * 10) + "%");
         var wrap = t.parentNode;
         var big = wrap.querySelector(".font-display");
